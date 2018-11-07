@@ -23,7 +23,7 @@ Getting the 2MB default page implementation correct might not be enough to succe
 
 # FAQ
 
-## Does not transparent huge pages (https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-memory-transhuge.html) already provide a good enough solution?
+## Do not transparent huge pages (https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-memory-transhuge.html) already provide a good enough solution?
 THP is a feature that causes some debate. Transparent huge pages abstracts the complexities of using larger pages from developers and system administrators, but its implementation also incurs additional overhead due to continuous scanning of pages that could be merged into larger pages (khugepaged kernel thread), and splitting the pages back to smaller pages in certain situations (such as copy-on-write). THP also makes the Kernel code more complex. Moreover, THP is not suited for database workloads and currently only maps anonymous memory regions such as heap and stack space. THP is currently disabled by default in order to avoid the risk of increasing the memory footprint of applications without a guaranteed benefit.
 
 ## Wouldn't using only 2MB pages overload the Huge TLB, causing more TLB misses?
